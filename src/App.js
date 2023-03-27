@@ -20,7 +20,7 @@ import EditProductScreen from './Screen/EditProductScreen';
 import UserListScreen from './Screen/UserListScreen';
 import UpdateUserScreen from './Screen/UpdateUserScreen';
 import AddThemeScreen from './Screen/AddThemeScreen';
-import EditThemeScreen from './Screen/EditProductScreen';
+import EditThemeScreen from './Screen/EditThemeScreen';
 import DeletedThemeScreen from './Screen/DeletedThemeScreen';
 import ThemeListScreen from './Screen/ThemeListScreen';
 import FAQ from './Screen/FAQScreen'

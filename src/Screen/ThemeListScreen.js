@@ -113,13 +113,6 @@ const ThemeListScreen = () => {
                     <td>{theme.genre}</td>
                     <td>
                       <div class="d-grid gap-1">
-                        <Button
-                          variant="danger"
-                          className="btn-md"
-                          onClick={() => deleteHandler(theme._id)}
-                        >
-                          <i className="fas fa-trash"></i>
-                        </Button>
                         {/* <Button variant='primary' className='btn-md'>
                         <i className='fas fa-edit'></i>
                       </Button> */}
