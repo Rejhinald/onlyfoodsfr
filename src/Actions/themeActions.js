@@ -156,7 +156,7 @@ export const listTheme1 = (id) => async (dispatch) => {
             type: THEME_DETAILS_REQUEST,
         });
 
-        const { data } = await axios.get(`https://rejhinald.pythonanywhere.com/api/themes/${id}`);
+        const { data } = await axios.get(`https://rejhinald.pythonanywhere.com/api/themes/`);
 
         dispatch({
             type: THEME_DETAILS_SUCCESS,
