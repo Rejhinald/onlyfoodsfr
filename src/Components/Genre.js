@@ -3,28 +3,24 @@ import { Card, Button, Row, Carousel, Container, CardGroup, Col } from 'react-bo
 import { Link } from 'react-router-dom';
 
 
-function Product({ product }) {
+function Genres({ genre }) {
   return (
     <Container>
     <Card className="rounded">
-        <Link to={`products/${product._id}`}>
+        <Link to={`/categoryproducts/${genre._id}`}>
             <Card.Img style={{
                  width:'100%',
                  height:'200px',
                  objectFit:'cover'
-            }} className="rounded" src={product.image} />
+            }} className="rounded" src={genre.image} />
         </Link>
     <Card.Body>
         <Card.Title>
-            <h3>{product.name}</h3>
+            <h3>{genre.name}</h3>
         </Card.Title>
-        <Card.Subtitle>
-        <small className="text-muted">Genre/s:</small>
-        <small className="text-muted">{product.genre}</small><br/>
-        </Card.Subtitle>
     <br/>
-    <Link to={`products/${product._id}`}>
-        <Row><Button>Watch</Button></Row>
+    <Link to={`/categoryproducts/${genre._id}`}>
+        <Row><Button> Products </Button></Row>
     </Link>
     </Card.Body>
     </Card>
@@ -32,4 +28,4 @@ function Product({ product }) {
   );
 }
 
-export default Product
+export default Genres

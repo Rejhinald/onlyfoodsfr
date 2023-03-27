@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import { addAccount } from "../Actions/accountActions";
+import { updateAccount } from "../Actions/accountActions";
 
-function Registerscreen() {
-  const [email, setEmail] = useState("");
+function UpdateUserProfileScreen() {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [password, setPassword] = useState("");
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
+  const [first_name, setFirstname] = useState(userInfo.first_name);
+  const [last_name, setLastname] = useState(userInfo.last_name);
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
@@ -20,19 +22,24 @@ function Registerscreen() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const AddUserInfo = async () => {
+  if (!userInfo) {
+    navigate("/login");
+  }
+  const [email, setEmail] = useState(userInfo.email);
+
+  const UpdateUserInfo = async () => {
     let formField = new FormData();
 
     formField.append("email", email);
     formField.append("password", password);
-    formField.append("fname", fname);
-    formField.append("lname", lname);
+    formField.append("first_name", first_name);
+    formField.append("last_name", last_name);
     formField.append("address", address);
     formField.append("city", city);
     formField.append("region", region);
     formField.append("postal_code", postalCode);
 
-    dispatch(addAccount(formField)).then((response) => {
+    dispatch(updateAccount(formField)).then((response) => {
       navigate("/");
     });
   };
@@ -51,7 +58,7 @@ function Registerscreen() {
     if (password !== confirmPassword) {
       setError("Passwords do not match");
     } else {
-      AddUserInfo();
+      UpdateUserInfo();
     }
   };
 
@@ -59,38 +66,18 @@ function Registerscreen() {
     <div>
       <br />
       <div class="text-center">
-        <h1>Sign Up</h1>
+        <h1>Update Profile</h1>
       </div>
       <div class="container">
         <div class="row">
           <div class="row justify-content-center mt-5">
             <div class="col-sm-6 col-12">
               <Form>
-                <Form.Group className="mb-3">
-                  <Form.Label>First Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter First Name"
-                    value={fname}
-                    onChange={(e) => setFname(e.target.value)}
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                  <Form.Label>Last Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Last Name"
-                    value={lname}
-                    onChange={(e) => setLname(e.target.value)}
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control
                     type="email"
-                    placeholder="Enter email"
+                    placeholder={userInfo.email}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -99,57 +86,15 @@ function Registerscreen() {
                   </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="mb-3">
-                  <Form.Label>Address</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                  <Form.Label>City</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter City"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                  <Form.Label>Region</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Region"
-                    value={region}
-                    onChange={(e) => setRegion(e.target.value)}
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                  <Form.Label>Postal Code</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Postal Code"
-                    value={postalCode}
-                    onChange={(e) => setPostalCode(e.target.value)}
-                  />
-                </Form.Group>
-
                 <Form.Group onSubmit={handleSubmit} className="mb-3">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter Password"
                     value={password}
                     onChange={handlePasswordChange}
                   />
-
                   <br />
-
                   <Form.Label>Confirm Password</Form.Label>
                   <Form.Control
                     type="password"
@@ -157,9 +102,69 @@ function Registerscreen() {
                     value={confirmPassword}
                     onChange={handleConfirmPasswordChange}
                   />
+                  <br />
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>First Name</Form.Label>
+                  <br />
+                  <Form.Control
+                    type="text"
+                    placeholder={userInfo.first_name}
+                    value={first_name}
+                    onChange={(e) => setFirstname(e.target.value)}
+                  />
                 </Form.Group>
 
-                <div className="text-center">
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userInfo.last_name}
+                    value={last_name}
+                    onChange={(e) => setLastname(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Address</Form.Label>
+                  <br />
+                  <Form.Control
+                    type="text"
+                    placeholder={userInfo.address}
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>City</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userInfo.city}
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Region</Form.Label>
+                  <br />
+                  <Form.Control
+                    type="text"
+                    placeholder={userInfo.region}
+                    value={region}
+                    onChange={(e) => setRegion(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Postal Code</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userInfo.postal_code}
+                    value={postalCode}
+                    onChange={(e) => setPostalCode(e.target.value)}
+                  />
+                </Form.Group>
+              </Form.Group>
+                <div class="text-center">
                   <Button
                     type="submit"
                     onClick={handleSubmit}
@@ -181,4 +186,4 @@ function Registerscreen() {
   );
 }
 
-export default Registerscreen;
+export default UpdateUserProfileScreen;
