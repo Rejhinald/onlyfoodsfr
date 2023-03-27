@@ -30,9 +30,9 @@ function DeletedProductScreen() {
             <br/>
             <br/>
             <div class="row justify-content-centerd-grid gap-3">
-            <Link to='/menulist' className='btn btn-primary' >Back to Movie List</Link>
+            <Link to='/menulist' className='btn btn-primary' >Back to Menu</Link>
             <Link to='/' className='btn btn-primary'>Back to Home</Link>
-            <Link to='/addproduct' className='btn btn-primary'>Add Movie</Link>
+            <Link to='/addproduct' className='btn btn-primary'>Add Product</Link>
             </div>
             </div>
         </div>
