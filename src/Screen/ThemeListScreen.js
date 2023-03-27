@@ -66,9 +66,6 @@ const ThemeListScreen = () => {
         <div class="container">
           <div class="row">
             <div class="row justify-content-center mt-10">
-              <Link to="/addtheme" className="btn btn-primary">
-                Add Theme
-              </Link>
             </div>
           </div>
         </div>
