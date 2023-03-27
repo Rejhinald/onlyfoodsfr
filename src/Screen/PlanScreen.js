@@ -21,7 +21,7 @@ function PlanScreen() {
 
   return (
     <div style={{ margin: '5% 15%' }}>
-      <Card style={{ margin: "auto", width: "100rem" }}>
+      <Card style={{ margin: "auto", width: "50rem" }}>
         <Card.Img variant="bottom" src="../images/PLANS.png" />
       </Card>
       <br/>
