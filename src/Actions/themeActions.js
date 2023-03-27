@@ -28,7 +28,7 @@ export const addTheme = (theme) => async (dispatch) => {
             type: THEME_ADD_REQUEST,
         });
 
-        const { data } = await axios.post('/api/themes/create', theme);
+        const { data } = await axios.post('https://rejhinald.pythonanywhere.com/api/themes/create', theme);
 
         dispatch({
             type: THEME_ADD_SUCCESS,
@@ -53,7 +53,7 @@ export const deleteTheme = (id) => async (dispatch, getState) => {
         })
 
         const { data } = await axios.delete(
-            `/api/themes/delete/${id}/`,
+            `https://rejhinald.pythonanywhere.com/api/themes/delete/${id}/`,
         )
 
         dispatch({
@@ -77,7 +77,7 @@ export const editTheme = (id, theme) => async (dispatch, getState) => {
             type: THEME_EDIT_REQUEST,
         });
 
-        const { data } = await axios.put(`/api/themes/update/${id}/`, theme)
+        const { data } = await axios.put(`https://rejhinald.pythonanywhere.com/api/themes/update/${id}/`, theme)
 
         dispatch({
             type: THEME_EDIT_SUCCESS,
@@ -108,7 +108,7 @@ export const listThemes = () => async (dispatch) => {
             type: THEME_LIST_REQUEST,
         });
 
-        const { data } = await axios.get('/api/themes');
+        const { data } = await axios.get('https://rejhinald.pythonanywhere.com/api/themes');
 
         dispatch({
             type: THEME_LIST_SUCCESS,
@@ -132,7 +132,7 @@ export const listThemeDetails = (id) => async (dispatch) => {
             type: THEME_DETAILS_REQUEST,
         });
 
-        const { data } = await axios.get(`/api/themes/${id}`);
+        const { data } = await axios.get(`https://rejhinald.pythonanywhere.com/api/themes/${id}`);
 
         dispatch({
             type: THEME_DETAILS_SUCCESS,
@@ -156,7 +156,7 @@ export const listTheme1 = (id) => async (dispatch) => {
             type: THEME_DETAILS_REQUEST,
         });
 
-        const { data } = await axios.get(`/api/themes/1`);
+        const { data } = await axios.get(`https://rejhinald.pythonanywhere.com/api/themes/1`);
 
         dispatch({
             type: THEME_DETAILS_SUCCESS,

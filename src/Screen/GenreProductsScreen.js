@@ -25,7 +25,7 @@ function GenreProductsScreen() {
   }
   useEffect(() => {
     async function fetchGenreProducts() {
-      const { data } = await axios.get(`/api/genreproducts/${id}`);
+      const { data } = await axios.get(`https://rejhinald.pythonanywhere.com/api/genreproducts/${id}`);
       setGenreProducts(data);
     }
     fetchGenreProducts();
