@@ -3,39 +3,49 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { editTheme, listThemeDetails } from "../Actions/themeActions";
+import { addProduct, editProduct, listProductDetails } from "../Actions/productActions";
 import { Link, useParams } from "react-router-dom";
+import { listGenres } from "../Actions/genreActions";
 
-function EditThemeScreen() {
+function EditProductScreen() {
     const { id } = useParams();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const AddThemeInfo = async () => {
+    const AddProductInfo = async () => {
         let formField = new FormData();
 
         formField.append("name", name);
         formField.append("description", description);
+        formField.append("genre", genre);
 
         if (image !== null) {
             formField.append("image", image);
         }
 
-        dispatch(editTheme(id, formField)).then((response) => {
-            navigate("/");
+        dispatch(editProduct(id, formField)).then((response) => {
+            navigate("/menulist");
         });
     };
 
-    const themeDetails = useSelector((state) => state.themeDetails);
-    const { theme } = themeDetails;
+    const genreList = useSelector((state) => state.genreList);
+    const { genres } = genreList;
     useEffect(() => {
-        dispatch(listThemeDetails(id));
+        dispatch(listGenres());
+        setGenre(genres)
+    }, []);
+
+    const productDetails = useSelector((state) => state.productDetails);
+    const { product } = productDetails;
+    useEffect(() => {
+        dispatch(listProductDetails(id));
     }, [dispatch]);
 
     const [name, setName] = useState("");
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
+    const [genre, setGenre] = useState("");
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -50,7 +60,7 @@ function EditThemeScreen() {
         <div>
             <br />
             <div class="text-center" variant="light">
-                <h1>Edit Theme</h1>
+                <h1>Edit Product Information</h1>
             </div>
             <Container>
                 <Link className="btn btn-light my-3" to="/menulist">
@@ -90,8 +100,25 @@ function EditThemeScreen() {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </Form.Group>
-                    <Button className="btn btn-primary" onClick={AddThemeInfo}>
-                        Edit Theme
+                    <Form.Group className="mb-3">
+                        <Form.Label>Category</Form.Label>
+                        <Form.Control
+                            as="select"
+                            className="form-control"
+                            placeholder="Please Select"
+                            value={genre}
+                            onChange={(e) => setGenre(e.target.value)}
+                        >
+                            <option value="">-- Please select --</option>
+                            {genres.map((item) => (
+                                <option key={item._id} value={item._id}>
+                                    {item.name}
+                                </option>
+                            ))}
+                        </Form.Control>
+                    </Form.Group>
+                    <Button className="btn btn-primary" onClick={AddProductInfo}>
+                        Edit Product
                     </Button>
                 </Form>
             </Container>
@@ -99,4 +126,4 @@ function EditThemeScreen() {
     );
 }
 
-export default EditThemeScreen;
+export default EditProductScreen;
