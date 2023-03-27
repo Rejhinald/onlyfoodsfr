@@ -40,7 +40,7 @@ function UpdateUserScreen() {
 
   const UpdateUserInfo = async () => {
     let formField = new FormData();
-
+    formField.append("email", email);
     formField.append("password", password);
     formField.append("first_name", first_name);
     formField.append("last_name", last_name);

@@ -97,7 +97,7 @@ function PlanScreen() {
                         vault: true,
                       }}
                     >
-                      <ButtonWrapper1 type="subscription" />
+                      <ButtonWrapper2 type="subscription" />
                     </PayPalScriptProvider>
                   ) : (
                     <div />
@@ -105,6 +105,7 @@ function PlanScreen() {
                 ) : (
                   <div />
                 )}
+
               </div>
             </div>
           </div>
@@ -123,7 +124,7 @@ function PlanScreen() {
         <li>Get an exclusive themed box every 1st day of the month!</li>
         <li>Cancel your plan anytime.</li>
       </ul>
-                {userInfo ? (
+      {userInfo ? (
                   !userInfo.isSubscriber ? (
                     <PayPalScriptProvider
                       options={{
@@ -134,14 +135,14 @@ function PlanScreen() {
                         vault: true,
                       }}
                     >
-                      <ButtonWrapper2 type="subscription" />
+                      <ButtonWrapper1 type="subscription" />
                     </PayPalScriptProvider>
                   ) : (
                     <div />
                   )
                 ) : (
                   <div />
-                )}
+                )}         
               </div>
             </div>
           </div>
