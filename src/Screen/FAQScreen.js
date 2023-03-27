@@ -35,6 +35,14 @@ const FAQ = () => {
         month to avoid being charged for the next month's box. However, <br />
         we do not offer refunds for boxes that have already been shipped.</p>
   </div>
+  <div style={{margin: "25px", alignItems: "justified"}}>
+    <h4>Q: Delivery Status?</h4>
+    <p>
+  A: We'll ship your Themed Box via PH Post, DHL, etc. <br/>
+  and we'll email you your tracking number and tracking link <br/>
+  through trackingmore.com where you can track the delivery status!
+</p> 
+  </div>
 </div>
 
   );
